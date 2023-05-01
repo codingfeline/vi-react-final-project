@@ -1,4 +1,10 @@
 @import 'tailwind.css';
+.nav-li {
+  @apply bg-blue-200 w-full block;
+}
+.nav-a {
+  @apply p-4 px-12 block  hover:bg-blue-300 text-center;
+}
 /* 
 :root  {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
