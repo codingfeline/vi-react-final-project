@@ -1,29 +1,36 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 // prettier-ignore
 import { Home, Footer, Header, Compo } from '@compo'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Restaurants } from './components'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { Restaurants, OneRestaurant } from './components'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const location = useLocation()
+
+  useEffect(() => {}, [location])
 
   return (
     <>
-      <Router>
-        <div className="bg-red-100 flex flex-col h-screen justify-between">
-          <Header />
-          <div className="flex flex-col mb-auto">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/compo" element={<Compo />} />
-              <Route path="/restaurants" element={<Restaurants />} />
-            </Routes>
-          </div>
-          <Footer />
+      <div
+        className={` flex flex-col h-screen justify-between
+        ${location.pathname === '/' && 'bg-indigo-200'}
+        ${location.pathname === '/compo' && 'bg-red-200'}
+        ${location.pathname === '/restaurants' && 'bg-lime-200'}
+        `}
+      >
+        <Header />
+        <div className="flex flex-col mb-auto">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/compo" element={<Compo />} />
+            <Route path="/restaurants" element={<Restaurants />} />
+            <Route path="/restaurant/:id" element={<OneRestaurant />} />
+          </Routes>
         </div>
-      </Router>
+        <Footer />
+      </div>
     </>
   )
 }
