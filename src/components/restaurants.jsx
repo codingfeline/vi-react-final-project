@@ -29,7 +29,7 @@ function Restaurants() {
       {items.map(item => (
         <Link
           className="z-50 block bg-blue-200  hover:bg-indigo-300 p-1"
-          to={`/restaurant/${item.id}`}
+          to={`/restaurant/one/${item.id}`}
           key={item.id}
         >
           {item.name}
