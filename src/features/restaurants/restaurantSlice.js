@@ -10,12 +10,9 @@ const initialState = {
 export const fetchRestaurants = createAsyncThunk(
   'restaurants/fetchRestaurants',
   () => {
-    return (
-      axios
-        // .get('http://localhost:4400/restaurants')
-        .get('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.data)
-    )
+    return axios
+      .get('http://localhost:4400/restaurants')
+      .then(response => response.data)
   }
 )
 
