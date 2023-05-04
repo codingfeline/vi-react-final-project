@@ -13,8 +13,8 @@ const RestaurantView = () => {
   return (
     <div>
       <h2>List of restaurants</h2>
-      {typeof restaurants}
-      {/* {restaurants.loading && <div>Loading...</div>}
+      {/* {typeof restaurants} */}
+      {restaurants.loading && <div>Loading...</div>}
       {!restaurants.loading && restaurants.error ? (
         <div>Error: {restaurants.error}</div>
       ) : null}
@@ -24,7 +24,7 @@ const RestaurantView = () => {
             <li key={restaurant.id}>{restaurant.name}</li>
           ))}
         </ul>
-      ) : null} */}
+      ) : null}
     </div>
   )
 }
