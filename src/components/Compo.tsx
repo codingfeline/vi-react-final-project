@@ -5,8 +5,15 @@ import { useState } from 'react'
 const Compo = () => {
   const [value, setValue] = useState('')
   return (
-    <div className=" bg-red-100 flex flex-col ">
+    <div className=" bg-slate-400 flex flex-col opacity-50">
       <p>welcome to testing</p>
+      <h1>h1</h1>
+      <h2>h2</h2>
+      <h3>h3</h3>
+      <h4>h4</h4>
+      <h5>h5</h5>
+      <h6>para</h6>
+      <p>para</p>
       <input
         type="text"
         value={value}
