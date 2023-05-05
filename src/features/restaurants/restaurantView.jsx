@@ -11,9 +11,8 @@ const RestaurantView = () => {
   }, [])
 
   return (
-    <div>
+    <div className="bg-slate-400 p-3 ">
       <h2>List of restaurants</h2>
-      {/* {typeof restaurants} */}
       {restaurants.loading && <div>Loading...</div>}
       {!restaurants.loading && restaurants.error ? (
         <div>Error: {restaurants.error}</div>
