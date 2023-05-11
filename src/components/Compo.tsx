@@ -5,7 +5,7 @@ import { useState } from 'react'
 const Compo = () => {
   const [value, setValue] = useState('')
   return (
-    <div className=" bg-slate-400 flex flex-col opacity-50">
+    <div className=" bg-slate-400 flex flex-col ">
       <p>welcome to testing</p>
       <h1>h1</h1>
       <h2>h2</h2>
