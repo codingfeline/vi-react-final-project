@@ -16,15 +16,15 @@ const About = () => {
   ]
 
   return (
-    <div>
+    <>
       <h2>about</h2>
       counter: {count}
       <button className="btn" onClick={() => dispatch(increment())}>
         Increment
       </button>
-      <div className="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
+      <div className="bg-yellow-100 py-8 px-6 shadow rounded-lg sm:px-10 w-3/4">
         <form className="mb-0 space-y-6" onSubmit={e => e.preventDefault()}>
-          <div>
+          <div className="">
             <label htmlFor="email" className="label">
               Email address
             </label>
@@ -63,7 +63,7 @@ const About = () => {
           </div>
         </form>
       </div>
-    </div>
+    </>
   )
 }
 
