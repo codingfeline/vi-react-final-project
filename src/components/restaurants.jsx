@@ -27,13 +27,16 @@ function Restaurants() {
       <h1 className="bg-yellow-100 text-lg tracking-[0.8em]">Restaurants</h1>
       <Awe icon={envelope} size="2x" />
       {items.map(item => (
-        <Link
-          className="z-50 block bg-blue-200  hover:bg-indigo-300 p-1"
-          to={`/restaurant/one/${item.id}`}
-          key={item.id}
-        >
-          {item.name}
-        </Link>
+        <div className="flex justify-between items-center gap-2 w-3/5">
+          <Link
+            className="z-50 block bg-blue-200  hover:bg-indigo-300 p-1"
+            to={`/restaurant/one/${item.id}`}
+            key={item.id}
+          >
+            {item.name}
+          </Link>
+          <input type="checkbox" />
+        </div>
       ))}
     </>
   )
