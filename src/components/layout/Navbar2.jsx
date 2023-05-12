@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Awe, bars, xmark } from '../icons'
 import supabase from '../../supabaseClient'
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,6 +11,7 @@ const Navbar2 = () => {
   const [hidden, setHidden] = useState(true)
   const [session, setSession] = useState(null)
   const navigate = useNavigate()
+  const path = useLocation().pathname
 
   const links = [
     { item: 'Home', to: '/' },
@@ -79,20 +80,28 @@ const Navbar2 = () => {
           </a>
         )}
       </div>
-
       <div
-        className={`duration-500 sm:static absolute bg-blue-100 sm:min-h-fit min-h-[100vh] left-0  sm:w-auto  w-full flex items-center justify-center sm:justify-end px-5 z-100
+        className={`duration-300 sm:static absolute bg-blue-100 sm:min-h-fit min-h-[100vh] left-0  sm:w-auto  w-full flex items-center justify-center   z-100
       ${!hidden ? 'top-[0%]' : 'top-[-100%]'}
       `}
       >
-        <ul className="flex sm:flex-row flex-col  sm:items-center sm:gap-[0vw] gap-1 items-stretch">
-          {links.map(link => (
-            <li key={link.item} className="nav-li">
-              <Link onClick={collapse} to={link.to} className="nav-a">
-                {link.item}
-              </Link>
-            </li>
-          ))}
+        <ul className="flex sm:flex-row flex-col  sm:items-center sm:gap-[0vw] gap-1 ">
+          {links.map(link => {
+            const isActive = path === link.to
+            return (
+              <li key={link.item} className="nav-li">
+                <Link
+                  onClick={collapse}
+                  to={link.to}
+                  className={`nav-a
+                ${isActive ? 'bg-blue-300' : 'bg-blue-200'}
+                `}
+                >
+                  {link.item}
+                </Link>
+              </li>
+            )
+          })}
           {auth ? (
             <li className="nav-li">
               <Link className="nav-a" onClick={signOut}>
@@ -101,7 +110,13 @@ const Navbar2 = () => {
             </li>
           ) : (
             <li className="nav-li">
-              <Link className="nav-a" onClick={collapse} to="/auth">
+              <Link
+                className={`nav-a
+              ${path === '/auth' ? 'bg-blue-300' : 'bg-blue-200'}
+              `}
+                onClick={collapse}
+                to="/auth"
+              >
                 Signin
               </Link>
             </li>
