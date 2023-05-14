@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Awe, envelope } from './icons'
 import supabase from '../supabaseClient'
+import { useSelector } from 'react-redux'
 
 export default function Restaurants() {
+  const auth = useSelector(state => state.auth.value)
   const [items, setItems] = useState([])
   const [error, setError] = useState(null)
   const [isOpen, setIsOpen] = useState(true)
@@ -29,6 +31,7 @@ export default function Restaurants() {
         .eq('id', id)
         .throwOnError()
         .select()
+        .order('name', { ascending: false })
 
       if (data) setItems(data)
     } catch (error) {
@@ -42,6 +45,7 @@ export default function Restaurants() {
 
   return (
     <>
+      {/* {auth ? 'auth' : 'no-auth'} */}
       <h1 className="bg-yellow-100 text-lg tracking-[0.8em]">Restaurants</h1>
       <Awe icon={envelope} size="2x" />
       {/* {JSON.stringify(items)} */}
@@ -55,13 +59,13 @@ export default function Restaurants() {
             >
               {item.name}
             </Link>
-            {/* {typeof item.id} */}
-            {item.isOpen}
-            <input
-              type="checkbox"
-              onChange={() => toggle(item.id, item.is_open)}
-              checked={item.is_open ? true : false}
-            />
+            {auth && (
+              <input
+                type="checkbox"
+                onChange={() => toggle(item.id, item.is_open)}
+                checked={item.is_open ? true : false}
+              />
+            )}
           </div>
         )
       })}
